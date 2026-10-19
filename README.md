@@ -1,3 +1,0 @@
-﻿# AI Git Starter
-Python study planner for Git practice.
-test test test test
