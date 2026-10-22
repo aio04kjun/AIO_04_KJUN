@@ -15,7 +15,8 @@ async def health():
 @app.get('/bad')
 async def bad():
     # 의도된 버그 : 비동기함수에서 동기 함수를 직접 호출
-    user = legacy_lookup()
+    # user = legacy_lookup() # 동기 원인
+    user = await asyncio.to_thread(legacy_lookup) #비동기로 수정
     return {'route':'bad', 'user':user}
 
 @app.get('/good')
