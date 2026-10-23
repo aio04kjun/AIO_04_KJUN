@@ -1,7 +1,5 @@
 // 기본 알림 대신 이 폼의 말풍선만 표시합니다. 서버 검증은 그대로 유지합니다.
-const entryForm = document.getElementById("entry-form");
-
-if (entryForm) {
+document.querySelectorAll("[data-note-form]").forEach((entryForm) => {
   const fields = [entryForm.elements.namedItem("name"), entryForm.elements.namedItem("message")];
 
   function isValid(field) {
@@ -37,4 +35,4 @@ if (entryForm) {
 
   // 스크립트 로드에 실패하면 HTML의 required 기본 검증이 계속 동작합니다.
   entryForm.noValidate = true;
-}
+});
