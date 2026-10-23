@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="잠시 머문 자리, 오래 남는 마음. 작은 인사를 남기는 방명록입니다.">
+  <title>작은 인사 · 방명록</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/validation.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="header wrap">
+    <a class="brand" href="/" aria-label="작은 인사 홈"><span class="brand-mark" aria-hidden="true">✳</span> 작은 인사<span class="brand-en">GUESTBOOK</span></a>
+    <a class="header-link" href="#write">마음 남기기 <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow"><span class="dot"></span> A LITTLE HELLO, A LASTING MEMORY</p>
+        <h1 id="hero-title">잠시 머문 자리,<br><span>오래 남는 마음.</span></h1>
+        <p class="hero-description">반가운 인사도, 소소한 오늘의 이야기도 좋아요.<br>당신의 한 줄로 이 공간을 채워주세요.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="art-spark">✳</span>
+        <svg viewBox="0 0 300 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="150" cy="207" rx="104" ry="10" fill="#DCE3D7"/>
+          <rect x="58" y="92" width="182" height="111" rx="7" fill="#BECDB7"/>
+          <path d="M59 97L149 160L239 97" stroke="#71886A" stroke-width="2"/>
+          <g transform="rotate(-8 147 110)">
+            <rect x="87" y="40" width="128" height="120" rx="5" fill="#FFFCF4" stroke="#D7DDCE"/>
+            <path d="M110 83H174M110 96H189M110 109H167" stroke="#B2C0A8" stroke-width="3" stroke-linecap="round"/>
+            <path d="M161 131C146 121 156 111 163 119C171 108 183 118 161 131Z" fill="#D99B75"/>
+          </g>
+          <path d="M58 202V111L149 166L240 111V202H58Z" fill="#D3DFC9"/>
+          <path d="M59 201L122 155M239 201L177 155" stroke="#A7BA9E" stroke-width="1.5"/>
+          <path d="M237 65C252 54 251 43 251 43C235 44 229 52 237 65ZM238 66C252 70 262 64 262 64C251 54 244 55 238 66Z" fill="#819875"/>
+        </svg>
+        <span class="art-note">a note for you</span>
+      </div>
+    </section>
+    <div class="board-layout">
+      <aside class="compose" id="write" aria-labelledby="write-title">
+        <span class="section-kicker">LEAVE A NOTE</span>
+        <h2 id="write-title">어떤 마음으로 오셨나요?</h2>
+        <p class="muted intro">짧은 인사 한마디면 충분해요.</p>
+        {{notice}}
+        <form id="entry-form" method="post" action="/entries">
+          <div class="field">
+            <label for="name">이름 <span>필수</span></label>
+            <input id="name" name="name" placeholder="어떻게 불러드릴까요?" maxlength="24" required autocomplete="nickname" aria-describedby="name-help" value="{{name}}">
+            <div id="name-error" class="validation-bubble" role="alert" hidden>
+              <span class="validation-icon" aria-hidden="true">✳</span>
+              <div><strong>이름을 알려주세요</strong><p>불러드릴 이름을 한 글자 이상 적어주세요.</p></div>
+            </div>
+            <small id="name-help">1–24자</small>
+          </div>
+          <div class="field">
+            <label for="message">남기고 싶은 이야기 <span>필수</span></label>
+            <textarea id="message" name="message" rows="6" placeholder="오늘의 생각, 응원, 반가운 인사를 남겨주세요." maxlength="500" required aria-describedby="message-help">{{message}}</textarea>
+            <div id="message-error" class="validation-bubble" role="alert" hidden>
+              <span class="validation-icon" aria-hidden="true">✧</span>
+              <div><strong>작은 인사를 남겨주세요</strong><p>공백 대신 당신의 이야기를 들려주세요.</p></div>
+            </div>
+            <small id="message-help">1–500자 · 따뜻한 언어를 사용해주세요.</small>
+          </div>
+          <p class="privacy">남긴 이름과 이야기는 모두에게 공개됩니다.<br>연락처 등 개인정보는 적지 말아주세요.</p>
+          <button class="submit" type="submit">마음 남기기 <span aria-hidden="true">↗</span></button>
+        </form>
+        <p class="compose-foot"><span aria-hidden="true">✧</span> 작은 말 한마디가 누군가의 하루를 바꿔요.</p>
+      </aside>
+      <section class="notes" aria-labelledby="notes-title">
+        <div class="notes-heading"><div><span class="section-kicker">WORDS WE SHARE</span><h2 id="notes-title">남겨진 마음 <span class="count">{{total}}</span></h2></div><span class="sort-label">최신순 ↓</span></div>
+        <form method="get" action="/" class="search" role="search"><label class="sr-only" for="q">이름 또는 이야기 검색</label><input id="q" name="q" type="search" maxlength="50" placeholder="이름이나 이야기로 찾아보세요" value="{{query}}"><button type="submit">검색</button>{{clear_search}}</form>
+        {{search_summary}}
+        <div class="note-list">{{entries}}</div>
+        {{pagination}}
+      </section>
+    </div>
+  </main>
+  <footer class="footer wrap"><span>작은 인사<span class="footer-dot">·</span>마음이 모이는 곳</span><span>Made for little moments.</span></footer>
+</body>
+</html>
