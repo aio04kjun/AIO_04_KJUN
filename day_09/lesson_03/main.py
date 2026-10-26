@@ -17,7 +17,11 @@ def replace_task(payload: TaskPut):
     item.update(payload.model_dump())
     return item
 
+# @app.patch("/tasks/1")
+# def patch_task(payload: TaskPatch):
+#     item.update(payload.model_dump())
+#     return item
 @app.patch("/tasks/1")
 def patch_task(payload: TaskPatch):
-    item.update(payload.model_dump())
+    item.update(payload.model_dump(exclude_unset=True))
     return item
