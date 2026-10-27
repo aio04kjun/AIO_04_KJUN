@@ -17,7 +17,7 @@ def prepare_database(db_path):
     try:
         connection.execute(
             "CREATE TABLE IF NOT EXISTS users ("
-            "id INTEGER PRIMARY KEY, nickname TEXT NOT NULL, "
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, nickname TEXT NOT NULL, "
             "city TEXT NOT NULL, points INTEGER NOT NULL)"
         )
         connection.executemany(
