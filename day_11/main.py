@@ -6,7 +6,8 @@ from getpass import getpass
 import psycopg
 
 # config.json 설정파일을 로드
-config_path = Path(__file__).with_name('config.json')
+config_path = Path(__file__).with_name('config_02.json')
+# config_path = Path(__file__).with_name('config.json')
 config = json.loads(config_path.read_text(encoding='utf-8'))
 
 # supabase 플랫폼의 database 접속

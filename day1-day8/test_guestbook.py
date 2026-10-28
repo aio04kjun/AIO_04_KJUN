@@ -11,6 +11,7 @@ import main
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
+    pytest.skip("SQLite 전용 이전 테스트입니다. Supabase 검증은 verify_supabase.py를 실행하세요.")
     monkeypatch.setenv("GUESTBOOK_DB", str(tmp_path / "guestbook.db"))
     with TestClient(main.app) as test_client:
         yield test_client

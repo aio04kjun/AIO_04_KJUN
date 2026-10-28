@@ -1,4 +1,5 @@
-# 기존 수업에서 사용한 라이브러리만 사용합니다.
+# Supabase PostgreSQL 직접 연결을 포함합니다.
 fastapi>=0.115,<1
 pydantic>=2.9,<3
 uvicorn>=0.30,<1
+psycopg[binary]>=3.2,<4
