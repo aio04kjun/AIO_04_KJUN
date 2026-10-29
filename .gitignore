@@ -9,3 +9,5 @@ __pycache__/
 .pytest_cache/
 .supabase-deps/
 day_11/config_02.json
+day_11/config.local.json
+**/config.local.json

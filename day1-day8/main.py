@@ -49,12 +49,32 @@ class EntryIn(BaseModel):
 
 def connect_db() -> psycopg.Connection:
     """config.json의 접속 정보로 Supabase public 스키마에 SSL 연결합니다."""
-    config_path = Path(os.environ.get("GUESTBOOK_CONFIG", str(BASE_DIR.parent / "day_11/config.json")))
+    # 수정 전: 상위 폴더를 읽어 Render의 저장소 루트 배포에서 경로가 어긋났습니다.
+    # config_path = Path(os.environ.get("GUESTBOOK_CONFIG", str(BASE_DIR.parent / "config.json")))
+    config_path = Path(os.environ.get("GUESTBOOK_CONFIG", "config.json"))
     if not config_path.is_absolute():
         config_path = BASE_DIR / config_path
     config = json.loads(config_path.read_text(encoding="utf-8-sig"))
+    # 수정 전: config.json에 저장한 비밀번호를 그대로 사용했습니다.
+    # connection = psycopg.connect(
+    #     **{key: config[key] for key in ("host", "port", "dbname", "user", "password")},
+    #     sslmode="require", connect_timeout=10, row_factory=dict_row,
+    #     prepare_threshold=None,
+    # )
+
+    # 마스킹 문자열은 인증에 사용할 수 없으므로 실제 값은 별도로 읽습니다.
+    password = os.environ.get("SUPABASE_DB_PASSWORD")
+    if not password:
+        secret_path = config_path.with_name("config.local.json")
+        if secret_path.is_file():
+            password = json.loads(secret_path.read_text(encoding="utf-8-sig")).get("password")
+    if not password or password == "********":
+        raise RuntimeError(
+            "SUPABASE_DB_PASSWORD 환경변수 또는 config.local.json에 실제 비밀번호를 설정해주세요."
+        )
     connection = psycopg.connect(
-        **{key: config[key] for key in ("host", "port", "dbname", "user", "password")},
+        **{key: config[key] for key in ("host", "port", "dbname", "user")},
+        password=password,
         sslmode="require", connect_timeout=10, row_factory=dict_row,
         prepare_threshold=None,
     )
