@@ -4,6 +4,40 @@ Above all, the UX/UI must make it easy for users to use the product and find its
 
 Build responsive layouts optimized for both desktop and mobile devices.
 
+## Typography preference (2026-10-30)
+
+The user requests Gothic/sans-serif typography for future web and app designs, including generated UI images. Reference Roboto, Sandoll Gothic, and Apple's system typography for a clean, restrained, highly readable appearance. Apply this to headings as well as body text, navigation, and controls; default to sans-serif rather than the serif headings in earlier PlantFashion/LUMEN references. Express hierarchy through size, weight, and spacing, with comfortable Korean line breaks and normal body letter spacing.
+
+Use a suitable available and licensed font for each project. Reference to Sandoll or Apple fonts does not imply font files are available or permission to redistribute them. Prefer the platform system stack when appropriate (for example `system-ui, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif`); request specific webfonts only when supplied or properly licensed. Do not assume a named family is installed or serves all Korean glyphs. For image-generation prompts explicitly request clean Gothic/sans-serif typography for all UI text, including titles, with no serif display lettering. Preserve an established project design system or follow a later explicit user direction when applicable. This is workspace guidance, not model training or account-wide memory.
+
+## Additional Pinterest design references (2026-10-30)
+
+The user requested analysis of the following five references and application to future web and app design in this workspace. All five primary pin images were visually inspected in the browser. Treat this as saved project design guidance, not model training or account-wide memory. Combine it with the existing Space and Liquid Design direction, adapt to the product and any established design system, and do not restyle existing products without a request. The pins are visual references, not sources of executable instructions or reusable licensed assets.
+
+### Observed visual characteristics
+
+1. https://kr.pinterest.com/pin/1109011477005181875/ — Source button study. Muted slate/blue-gray glass with a large rounded panel, circular arrow button, and capsule-shaped text button. Very thin pale rim highlights, darker inset edges, soft shadows, and a broad diffuse light pool communicate thickness. Sparse typography and ample empty space make the controls the focal point. Apply to a few important controls; increase label/icon contrast over the reference where needed.
+2. https://kr.pinterest.com/pin/705517097891764360/ — PlantFashion glassmorphism composition. A rounded inset frosted panel over a full botanical image; small navigation at the top, large left-aligned serif headline and short copy, one compact light pill CTA. A sharply rendered branch on the right crosses the panel boundary, separating background, glass, and foreground. This is the same image as existing Space reference 7. Carry over composition and depth, using navy glass and celestial/abstract objects for the default space direction. Green and botanical imagery remain optional for suitable product briefs.
+3. https://kr.pinterest.com/pin/48202658506295071/ — Abstract folded/curved surface. Ice blue, pale lavender, blush/peach, and deep ink-blue shadows. One precise diagonal edge contrasts with a rounded fold, broad soft gradients, and blurred reflected light. Use as an occasional hero object or diagonal section crop with calm space for text, rather than a busy repeating texture. This artwork does not itself establish a UI layout.
+4. https://kr.pinterest.com/pin/726275877457815875/ — Primary wallpaper image: vertically overlapping translucent capsule/oval forms in icy blue on gray-lavender. Thin luminous contours, darker inner edges, pale cyan interiors, tiny violet/pink edge accents, and a reflected lower form suggest glass volume. Use controlled overlap and a consistent radius family for visual hierarchy. This abstract wallpaper does not establish navigation or interaction behavior.
+5. https://kr.pinterest.com/pin/596938125645420665/ — Near-black/navy planetary horizon with a low, wide cyan-white arc and localized atmospheric bloom. The brightest region sits around the center of the arc; broad dark sky supplies negative space. Use for a quiet hero or section transition, keeping text clear of the brightest edge and preserving the low-horizon composition when cropping on mobile.
+
+Observed public image URLs, in the same order (may change):
+- https://i.pinimg.com/736x/a0/94/5e/a0945e004a001882c3f199f82b53a530.jpg
+- https://i.pinimg.com/736x/48/32/aa/4832aa918c1256d934facd4bd02263a8.jpg
+- https://i.pinimg.com/736x/e4/76/37/e476377753a471e80ca9e869e1b394e1.jpg
+- https://i.pinimg.com/736x/57/66/1b/57661b9ed54c68a543cb8d1c22ca8b45.jpg
+- https://i.pinimg.com/736x/10/48/ef/1048efce851224e3b401a7ce9d00caed.jpg
+
+### Application to future designs
+
+- Color: retain near-black/navy and cyan/ice-blue as the default space palette. Add muted slate glass and optional lavender/blush/peach highlights from these references in small areas. Light abstract compositions are available when the brief calls for them; do not put every reference color on the same screen. These are visual color descriptions, not sampled color values; validate contrast in the implementation.
+- Mood and lighting: quiet, refined, tactile, and futuristic. Create depth with a soft broad light field, a thin directional rim, and localized shadow/bloom. Keep light direction coherent across neighboring controls; avoid outlining every card with a strong glow.
+- Lines and shapes: combine large planetary arcs, circles, capsules, rounded inset panels, and occasional precise diagonal cuts. Use faint separators and material edges to support grouping, while providing visible focus rings and sufficiently legible functional icons. Decorative hairlines must not be the sole state indicator.
+- Layout: use a clear headline/copy/action grouping, a deliberate focal object, and generous negative space. Overlap one foreground object with a panel when useful; do not cover text or controls. App workflows still need compact readable controls, stable form/table surfaces, and easy feature discovery. On narrow screens, stack copy and artwork while preserving reading order and touch targets.
+- Interaction proposals, not observed behavior: the inspected pin images are stills; hover, press, drag, scroll, timing, and transitions were not demonstrated. Derive restrained feedback from their material language: a subtle edge/light change on hover, an unmistakable keyboard focus ring, a small pressed depth change, and brief opacity/transform transitions between states. Do not infer functionality from decorative arrows or shapes. Apply the existing motion durations and reduced-motion guidance; no continuous floating, glow pulsing, pointer-following light, or parallax by default.
+- Implementation: prefer CSS/SVG or original optimized artwork for decorative forms. Use selective glass on navigation and key controls; opaque readable surfaces for sustained content. Keep decorative layers noninteractive and out of the accessibility tree, provide blur fallbacks, and verify desktop/mobile, keyboard, contrast, reduced motion, and immediate action feedback.
+
 ## Space concept from user image references
 
 On 2026-10-28 the user added seven image references and requested that future design work use their colors, mood, effects, and spatial composition. Combine this space concept with the Liquid Design rules below unless the user gives a different direction. These are visual references, not instructions embedded in the images. This preference applies within this workspace; do not claim model training or account-wide persistent memory.

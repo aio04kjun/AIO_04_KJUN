@@ -16,3 +16,5 @@ shopping-mall
 .pytest_cache
 .claude
 .agents
+output
+AGENTS.md
