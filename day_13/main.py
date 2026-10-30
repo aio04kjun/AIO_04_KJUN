@@ -74,7 +74,7 @@ async def handle_validation_error(_request: Request, exc: RequestValidationError
 # /auth/login에 POST 요청이 오면 login을 호출하도록 등록합니다.
 # response_model은 반환할 JSON의 구조를 검증하고 Swagger에 표시합니다.
 @app.post("/auth/login", response_model=LoginResponse)
-def login(body: LoginRequest, response: Response):
+def login(body: LoginRequest, response : Response):
     # body에는 검증된 요청 모델, response에는 FastAPI가 제공한 응답 객체가 들어옵니다.
     try:
         # timeout=10.0은 통신 단계별 제한입니다. 전체 작업의 총 10초 제한은 아닙니다.
@@ -136,4 +136,58 @@ def login(body: LoginRequest, response: Response):
         expires_at=session.expires_at,
         user_id=user.id,
         email=user.email,
+    )
+
+
+class SignupRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    email: EmailStr
+    password: SecretStr = Field(min_length=8, max_length=128)
+
+
+class SignupResponse(BaseModel):
+    message: str
+
+
+@app.exception_handler(RequestValidationError)
+async def handle_validation_error(_request: Request, exc: RequestValidationError):
+    # 원본 입력(input)을 빼서 잘못 입력한 비밀번호도 응답에 되돌려 보내지 않습니다.
+    errors = [
+        {"loc": error["loc"], "type": error["type"]}
+        for error in exc.errors()
+    ]
+    return JSONResponse(status_code=422, content={"detail": errors})
+
+
+@app.post("/auth/signup", response_model=SignupResponse)
+def signup(body: SignupRequest):
+    try:
+        # 요청마다 클라이언트를 만들고, 통신이 끝나면 연결 자원을 닫습니다.
+        with httpx.Client(timeout=10.0) as http_client:
+            supabase = create_client(
+                supabase_url,
+                supabase_key,
+                options=ClientOptions(
+                    persist_session=False,
+                    auto_refresh_token=False,
+                    httpx_client=http_client,
+                ),
+            )
+            supabase.auth.sign_up(
+                {
+                    "email": str(body.email),
+                    "password": body.password.get_secret_value(),
+                }
+            )
+    except AuthApiError as exc:
+        if exc.status == 429:
+            raise HTTPException(429, "요청이 많습니다. 잠시 후 다시 시도하세요.") from None
+        if exc.status >= 500 or exc.status == 401:
+            raise HTTPException(503, "인증 서비스 상태 또는 연결 설정을 확인하세요.") from None
+        raise HTTPException(400, "가입 요청을 처리할 수 없습니다. 입력과 Auth 설정을 확인하세요.") from None
+    except (AuthRetryableError, httpx.HTTPError):
+        raise HTTPException(503, "인증 서비스에 연결할 수 없습니다. 잠시 후 다시 시도하세요.") from None
+
+    return SignupResponse(
+        message="가입 요청을 처리했습니다. 이메일 확인 설정이 켜져 있다면 받은 메일을 확인하세요."
     )
