@@ -11,4 +11,18 @@ from supabase.client import ClientOptions
 
 
 load_dotenv(override=True)
-print(os.getenv("host", ""))
+
+supabase_url = os.getenv("supabase_url").strip().rsplit("/")
+supabase_key = os.getenv("supabase_publishable_key").strip()
+if not supabase_url or not supabase_key:
+    raise RuntimeError("supabase_url or supabase_publishable_key missing")
+
+app = FastAPI(title="Supabase Auth - 회원가입")
+
+class SignupRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    email : EmailStr
+    password : SecretStr = Field(min_length=8, max_length=128)
+
+class SignupRequest(BaseModel):
+    messege : str
