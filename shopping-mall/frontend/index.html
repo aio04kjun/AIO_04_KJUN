@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06121c">
+  <meta name="description" content="오르빗 — 매일 사용하는 물건에 조금 다른 시선. 일상을 위한 라이프스타일 셀렉트숍.">
+  <title>ORBIT — 일상에 새로운 궤도를</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/orbit.svg">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script type="module" src="/assets/js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 바로 가기</a>
+  <div id="demo-banner" class="demo-banner" hidden>로컬 체험 모드 · 실제 결제가 없으며 데이터는 서버 재시작 시 초기화됩니다.</div>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="오르빗 홈"><img src="/assets/images/orbit.svg" width="34" height="34" alt=""><span>ORBIT<span class="brand-caption">EVERYDAY OBJECTS</span></span></a>
+    <nav aria-label="주요 메뉴">
+      <a href="/#collection" data-nav="products">상품</a>
+      <a href="/cart" data-nav="cart">장바구니 <span id="cart-count" class="count" hidden>0</span></a>
+      <a href="/mypage" data-nav="mypage">마이페이지</a>
+      <a id="auth-link" href="/login">로그인</a>
+      <button id="logout" class="nav-button" type="button" hidden>로그아웃</button>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1" aria-busy="true">
+    <section class="initial container"><p class="eyebrow">WELCOME TO YOUR ORBIT</p><h1>일상에 새로운 궤도를.</h1><p>상품을 불러오고 있습니다.</p></section>
+  </main>
+  <noscript><p class="container error">상품 조회와 구매에는 JavaScript가 필요합니다. 브라우저에서 JavaScript를 허용해 주세요.</p></noscript>
+  <footer class="site-footer container"><a class="footer-brand" href="/">ORBIT<span>오래 곁에 둘 일상의 물건들.</span></a><div><a href="/">상품 둘러보기</a><a href="/mypage/orders">구매 내역</a><span class="muted">학습용 쇼핑몰 · 모의 결제</span></div><small>© ORBIT. A little space for your everyday.</small></footer>
+  <div id="notice" class="notice" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+</body>
+</html>

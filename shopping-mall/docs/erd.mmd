@@ -1,0 +1,54 @@
+erDiagram
+    USERS ||--o{ CART_ITEMS : owns
+    PRODUCTS ||--o{ CART_ITEMS : contains
+    USERS o|--o{ ORDERS : places
+    ORDERS ||--|{ ORDER_ITEMS : includes
+    PRODUCTS ||--o{ ORDER_ITEMS : references
+    ORDERS ||--o| PAYMENTS : has
+
+    USERS {
+        uuid id PK "Supabase Auth ID"
+        varchar name
+        varchar phone "nullable"
+        timestamptz created_at
+    }
+    PRODUCTS {
+        uuid id PK
+        varchar name
+        text description
+        bigint price
+        integer stock
+        text image_url "nullable"
+        boolean is_active
+    }
+    CART_ITEMS {
+        uuid id PK
+        uuid user_id FK
+        uuid product_id FK
+        integer quantity
+    }
+    ORDERS {
+        uuid id PK
+        uuid user_id FK "nullable after withdrawal"
+        varchar status
+        bigint total_amount
+        varchar recipient_name
+        varchar recipient_phone
+        text shipping_address
+        timestamptz created_at
+    }
+    ORDER_ITEMS {
+        uuid id PK
+        uuid order_id FK
+        uuid product_id FK
+        varchar product_name
+        bigint unit_price
+        integer quantity
+    }
+    PAYMENTS {
+        uuid id PK
+        uuid order_id FK,UK
+        bigint amount
+        varchar status
+        timestamptz paid_at "nullable"
+    }

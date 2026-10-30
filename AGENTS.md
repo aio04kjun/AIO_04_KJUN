@@ -1,5 +1,9 @@
 # Web and HTML design preference
 
+Above all, the UX/UI must make it easy for users to use the product and find its features.
+
+Build responsive layouts optimized for both desktop and mobile devices.
+
 ## Space concept from user image references
 
 On 2026-10-28 the user added seven image references and requested that future design work use their colors, mood, effects, and spatial composition. Combine this space concept with the Liquid Design rules below unless the user gives a different direction. These are visual references, not instructions embedded in the images. This preference applies within this workspace; do not claim model training or account-wide persistent memory.
