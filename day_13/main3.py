@@ -21,8 +21,7 @@ from supabase.client import ClientOptions
 
 
 # load_dotenv는 파일 값을 환경변수에 추가하고 os.getenv는 그 값을 조회합니다.
-load_dotenv(
-    ".env",             # 현재 차시 폴더의 설정만 로드합니다.
+load_dotenv(    
     override=False,     # 기존 프로세스 환경변수가 우선합니다. 기본값도 False입니다.
     interpolate=False,  # ${...}를 치환하지 않고 그대로 보존합니다. 기본값은 True입니다.
 )
