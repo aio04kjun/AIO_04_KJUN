@@ -1,4 +1,4 @@
-"""3교시: Redis에 만료되는 대화 세션을 발급하고 조회한다."""
+""" Redis에 만료되는 대화 세션을 발급하고 조회한다."""
 import os
 from uuid import UUID, uuid4  # 대화방 ID 검사와 세션 ID 생성에 사용한다.
 
@@ -9,7 +9,8 @@ from pydantic import BaseModel, ConfigDict
 from redis import Redis, RedisError
 
 # 현재 폴더의 .env를 읽되 기존 환경변수와 ${...} 원문을 보존한다.
-load_dotenv(".env", override=False, interpolate=False)
+# load_dotenv(".env", override=False, interpolate=False)
+load_dotenv(override=False, interpolate=False)
 REDIS_URL = os.getenv("REDIS_URL", "")
 TTL_TEXT = os.getenv("SESSION_TTL_SECONDS", "")
 if not REDIS_URL.strip():
