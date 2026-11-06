@@ -1,0 +1,144 @@
+{
+  "objective": "메시지 저장 성공 후 이력 다시 읽기",
+  "files": {
+    "main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "python -m streamlit run main.py"
+    },
+    ".env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    "requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    ".gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    "README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    }
+  },
+  "routes": [],
+  "curriculum": {
+    "course": "웹 서비스 기초 및 AI 백엔드 개발",
+    "unit": "AI 인터페이스 및 UX 설계",
+    "goal": "메시지 저장 성공 후 이력 다시 읽기",
+    "confirmed_prior_learning": "제공된 1차시 코드 및 실제 Auth lesson08·하이브리드 backend06·HF backend04 원본 확인",
+    "current_scope": "메시지 저장 성공 후 이력 다시 읽기",
+    "reuse": "사용자별 대화·기억을 화면과 연결하는 검증된 상태 관리",
+    "excluded": [
+      "RAG",
+      "LangGraph",
+      "모델 생성",
+      "자동 토큰 갱신",
+      "F5 뒤 자동 로그인"
+    ]
+  },
+  "learning_steps": [
+    {
+      "step": 1,
+      "goal": "조회 화면을 기준으로 시작",
+      "change_location": "현재 main.py에서 [입력]·[재시도]·[저장] 블록을 잠시 뺍니다. 나머지 코드는 유지해 실제 이력을 읽습니다.",
+      "input": "로그인하고 대화 하나 선택",
+      "expected": "기존 저장 기록만 보임.",
+      "pass_criteria": "기존 저장 기록만 보임.",
+      "first_check": "실행 중인 백엔드와 선택 ID.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 2,
+      "goal": "입력을 미확정 한 건으로 보관",
+      "change_location": "[입력] 블록을 복원합니다. 화면에 저장 확인 중 문장을 보려면 임시로 `if pending: st.text(pending[\"content\"])`를 넣습니다.",
+      "input": "이번 주 복습할 내용을 정리하자 제출",
+      "expected": "pending에는 문장 존재, DB 말풍선 수는 그대로.",
+      "pass_criteria": "pending에는 문장 존재, DB 말풍선 수는 그대로.",
+      "first_check": "아직 POST를 하지 않은 상태임을 구분하는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 3,
+      "goal": "실제 저장 후 다시 읽기",
+      "change_location": "임시 출력 줄을 제거합니다. [저장] 블록 앞에 `retry = pending is not None`을 두고 [저장] 블록을 복원합니다. [재시도]는 아직 넣지 않습니다. 이 단계에서만 기존 pending을 곧바로 처리하는 임시 조건입니다.",
+      "input": "화면 다시 실행으로 2단계 pending 처리 → 같은 대화 GET으로 확인",
+      "expected": "2단계 문장이 POST 성공→rerun→GET으로 한 행 추가; 입력창 활성화.",
+      "pass_criteria": "2단계 문장이 POST 성공→rerun→GET으로 한 행 추가; 입력창 활성화.",
+      "first_check": "성공 전 pending을 지우거나 messages에 직접 append하지 않는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 4,
+      "goal": "미확정 저장을 같은 ID로 확인",
+      "change_location": "임시 `retry = pending is not None`을 지우고 [재시도] 블록을 완성본 위치에 복원합니다. 정상 입력 저장을 확인한 뒤 서버 중단의 미확정 건은 버튼으로만 처리합니다.",
+      "input": "[저장] 블록을 잠시 빼서 새 입력 한 건을 pending으로 준비 → 블록 복원·서버 중단 → 화면 다시 실행 → 서버 복구 → 저장 확인/재시도",
+      "expected": "한 건당 한 행, 성공 후 입력창 활성화.",
+      "pass_criteria": "한 건당 한 행, 성공 후 입력창 활성화.",
+      "first_check": "pending의 request_id를 클릭 때마다 새로 만들지 않는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    }
+  ],
+  "integration": {
+    "required_stacks": [
+      "Streamlit",
+      "HTTPX",
+      "FastAPI",
+      "Supabase Auth",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "backend_source": {
+      "service_folder": "backend",
+      "file": "../backend/main.py",
+      "version": "Session_State_02_08 fixed backend"
+    },
+    "api_contract": "../BACKEND_GUIDE.md",
+    "evidence": {
+      "Streamlit": {
+        "file": "main.py",
+        "quote": "st.form(\"login_form\", clear_on_submit=True)"
+      },
+      "HTTPX": {
+        "file": "main.py",
+        "quote": "API_BASE_URL + path"
+      },
+      "FastAPI": {
+        "file": "main.py",
+        "quote": "api(\"GET\", \"/me\")"
+      },
+      "Supabase Auth": {
+        "file": "../backend/main.py",
+        "quote": ".auth.get_user(token)"
+      },
+      "Redis": {
+        "file": "../backend/main.py",
+        "quote": "client.get(session_key(token))"
+      },
+      "PostgreSQL": {
+        "file": "../backend/main.py",
+        "quote": "WHERE owner_id = %s ORDER BY created_at, id"
+      }
+    },
+    "verification": "real Streamlit/FastAPI routes + external service doubles; remote Auth/PostgreSQL/Redis not verified"
+  },
+  "verification": {
+    "python": "3.12",
+    "streamlit": "1.51.0",
+    "completed": [
+      "정상 흐름",
+      "중간 단계 코드",
+      "합성 비교 코드",
+      "대역 서비스 오류",
+      "인증·소유권·계정 경계",
+      "설정 검사"
+    ],
+    "not_run": [
+      "원격 Supabase Auth",
+      "실제 PostgreSQL SQL 실행",
+      "실 Redis 서버",
+      "Windows CMD·브라우저 조작"
+    ]
+  }
+}

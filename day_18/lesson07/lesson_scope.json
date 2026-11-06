@@ -1,0 +1,144 @@
+{
+  "objective": "로그인 만료와 서버 장애를 구분하기",
+  "files": {
+    "main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "python -m streamlit run main.py"
+    },
+    ".env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    "requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    ".gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    },
+    "README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "README.md의 준비·단계별 안내에서 사용"
+    }
+  },
+  "routes": [],
+  "curriculum": {
+    "course": "웹 서비스 기초 및 AI 백엔드 개발",
+    "unit": "AI 인터페이스 및 UX 설계",
+    "goal": "로그인 만료와 서버 장애를 구분하기",
+    "confirmed_prior_learning": "제공된 1차시 코드 및 실제 Auth lesson08·하이브리드 backend06·HF backend04 원본 확인",
+    "current_scope": "로그인 만료와 서버 장애를 구분하기",
+    "reuse": "사용자별 대화·기억을 화면과 연결하는 검증된 상태 관리",
+    "excluded": [
+      "RAG",
+      "LangGraph",
+      "모델 생성",
+      "자동 토큰 갱신",
+      "F5 뒤 자동 로그인"
+    ]
+  },
+  "learning_steps": [
+    {
+      "step": 1,
+      "goal": "오류 분기를 찾기",
+      "change_location": "현재 main.py에서 [만료 표시] 블록만 잠시 빼고 로그인·선택·저장 흐름을 실행합니다. api 함수의 status 분기는 준비된 코드를 읽습니다.",
+      "input": "로그인 → 메시지 정상 저장",
+      "expected": "기존 정상 흐름 유지.",
+      "pass_criteria": "기존 정상 흐름 유지.",
+      "first_check": "오류 처리를 정상 저장 블록과 섞지 않았는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 2,
+      "goal": "남은 수명 관찰",
+      "change_location": "[만료 표시] 블록을 복원합니다. 백엔드 SESSION_TTL_SECONDS=15로 수정·재시작한 뒤 다시 로그인합니다.",
+      "input": "화면 다시 실행 → 약 3초 뒤 다시 실행",
+      "expected": "남은 시간은 줄고 자동 카운트다운은 아님.",
+      "pass_criteria": "남은 시간은 줄고 자동 카운트다운은 아님.",
+      "first_check": "수정 후 새로 로그인했는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 3,
+      "goal": "401이면 개인 상태 정리",
+      "change_location": "api 함수의 401 블록을 읽고 clear_private·notice·rerun 세 역할을 표시합니다. 비교를 위해 rerun 한 줄만 잠시 빼고 만료시켜 본 뒤 복원합니다.",
+      "input": "15초가 지난 뒤 화면 다시 실행",
+      "expected": "복원 후에는 로그인 안내로 자동 이동; DB 행은 남음.",
+      "pass_criteria": "복원 후에는 로그인 안내로 자동 이동; DB 행은 남음.",
+      "first_check": "401 뒤에도 pending이나 선택 키가 남는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    },
+    {
+      "step": 4,
+      "goal": "503·연결 실패에서는 입력 보존",
+      "change_location": "TTL을 600으로 복구하고 서버 재시작·로그인합니다. DB 접속 또는 Redis를 잠시 중단해 503을, FastAPI 중단으로 연결 실패를 각각 확인하고 서비스를 복구합니다.",
+      "input": "서버 장애 → 화면 다시 실행 → 복구 후 다시 실행",
+      "expected": "장애 안내, 자동 로그아웃 안 함; 미확정 건은 같은 ID로 재확인 가능.",
+      "pass_criteria": "장애 안내, 자동 로그아웃 안 함; 미확정 건은 같은 ID로 재확인 가능.",
+      "first_check": "401에만 clear_private를 적용하는지.",
+      "verification": "AppTest + FastAPI TestClient, explicit Auth/Redis/DB doubles; edited intermediate source executed; manual service outages not remotely executed"
+    }
+  ],
+  "integration": {
+    "required_stacks": [
+      "Streamlit",
+      "HTTPX",
+      "FastAPI",
+      "Supabase Auth",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "backend_source": {
+      "service_folder": "backend",
+      "file": "../backend/main.py",
+      "version": "Session_State_02_08 fixed backend"
+    },
+    "api_contract": "../BACKEND_GUIDE.md",
+    "evidence": {
+      "Streamlit": {
+        "file": "main.py",
+        "quote": "st.form(\"login_form\", clear_on_submit=True)"
+      },
+      "HTTPX": {
+        "file": "main.py",
+        "quote": "API_BASE_URL + path"
+      },
+      "FastAPI": {
+        "file": "main.py",
+        "quote": "api(\"GET\", \"/me\")"
+      },
+      "Supabase Auth": {
+        "file": "../backend/main.py",
+        "quote": ".auth.get_user(token)"
+      },
+      "Redis": {
+        "file": "../backend/main.py",
+        "quote": "client.get(session_key(token))"
+      },
+      "PostgreSQL": {
+        "file": "../backend/main.py",
+        "quote": "WHERE owner_id = %s ORDER BY created_at, id"
+      }
+    },
+    "verification": "real Streamlit/FastAPI routes + external service doubles; remote Auth/PostgreSQL/Redis not verified"
+  },
+  "verification": {
+    "python": "3.12",
+    "streamlit": "1.51.0",
+    "completed": [
+      "정상 흐름",
+      "중간 단계 코드",
+      "합성 비교 코드",
+      "대역 서비스 오류",
+      "인증·소유권·계정 경계",
+      "설정 검사"
+    ],
+    "not_run": [
+      "원격 Supabase Auth",
+      "실제 PostgreSQL SQL 실행",
+      "실 Redis 서버",
+      "Windows CMD·브라우저 조작"
+    ]
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "objective": "2~8차시 로그인·사용자 소유 이력 바인딩",
+  "files": {
+    "BACKEND_GUIDE.md": {
+      "purpose": "백엔드 연결·기존 코드 차이·실행·스키마·API 계약 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "TODAY_GUIDE.md": {
+      "purpose": "수업 전 결과물·진행·시작·완료 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson04/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson04/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson04/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson04/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson04/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson07/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson07/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson07/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson07/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson07/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson05/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson05/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson05/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson05/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson05/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson08/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson08/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson08/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson08/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson08/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson06/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson06/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson06/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson06/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson06/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson02/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson02/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson02/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson02/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson02/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson03/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson03/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson03/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson03/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "lesson03/README.md": {
+      "purpose": "학습·실행·단계 확인·프롬프트·과제 안내",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "backend/main.py": {
+      "purpose": "현재 실습의 실행 코드",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "backend/.env.example": {
+      "purpose": "비밀값 없는 설정 이름과 형식 예시",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "backend/requirements.txt": {
+      "purpose": "검증한 직접 의존성 설치 목록",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    },
+    "backend/.gitignore": {
+      "purpose": "비밀 환경·가상환경·캐시 제외 규칙",
+      "execution": "차시 README 또는 BACKEND_GUIDE의 실행·확인 순서"
+    }
+  },
+  "routes": [
+    {
+      "file": "backend/main.py",
+      "method": "POST",
+      "path": "/auth/login",
+      "purpose": "UI의 실제 POST 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson02/main.py",
+          "quote": "api(\"POST\", \"/auth/login\","
+        }
+      ]
+    },
+    {
+      "file": "backend/main.py",
+      "method": "GET",
+      "path": "/me",
+      "purpose": "UI의 실제 GET 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson02/main.py",
+          "quote": "api(\"GET\", \"/me\")"
+        }
+      ]
+    },
+    {
+      "file": "backend/main.py",
+      "method": "POST",
+      "path": "/auth/logout",
+      "purpose": "UI의 실제 POST 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson03/main.py",
+          "quote": "API_BASE_URL + \"/auth/logout\""
+        }
+      ]
+    },
+    {
+      "file": "backend/main.py",
+      "method": "GET",
+      "path": "/conversations",
+      "purpose": "UI의 실제 GET 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson04/main.py",
+          "quote": "api(\"GET\", \"/conversations\")"
+        }
+      ]
+    },
+    {
+      "file": "backend/main.py",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/messages",
+      "purpose": "UI의 실제 GET 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson04/main.py",
+          "quote": "api(\"GET\", f\"/conversations/{selected_id}/messages\")"
+        }
+      ]
+    },
+    {
+      "file": "backend/main.py",
+      "method": "POST",
+      "path": "/conversations/{conversation_id}/messages",
+      "purpose": "UI의 실제 POST 요청 처리",
+      "evidence": [
+        {
+          "file": "lesson06/main.py",
+          "quote": "api(\"POST\", f\"/conversations/{selected_id}/messages\","
+        }
+      ]
+    }
+  ],
+  "source_provenance": [
+    {
+      "source": "supabase_auth_lesson08/lesson08/main.py",
+      "sha256": "0061bffb17525c1cd43c1fc4ec941da15cbe3296f3413b38de576bef880e5dda"
+    },
+    {
+      "source": "streamlit_integrated_lessons05_08/streamlit_integrated/backend06/main.py",
+      "sha256": "53e8f6c25aee731af2715837e4c2e89311709a0ea8ca5d82462b5d931b1d47fd"
+    },
+    {
+      "source": "HF_Streamlit_Lessons02_04/backend04/main.py",
+      "sha256": "38cb1960450575bb3de7ad57229d3d705b39bd4ac1e1515bae6fd213620d95cb"
+    }
+  ]
+}

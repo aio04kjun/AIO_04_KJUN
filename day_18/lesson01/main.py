@@ -3,6 +3,7 @@
 # Streamlit은 화면을 만들고, 화면 조작이 일어나면 이 파일을 다시 실행한다.
 import streamlit as st
 
+print('streamlit 실행')
 
 # 화면의 제목과 이번 실습의 범위를 안내한다.
 st.title("메시지가 남는 대화 화면")
@@ -12,6 +13,7 @@ st.caption("내가 입력한 메시지만 기록합니다. AI 답변이나 로�
 # 매 실행마다 []를 대입하면 기존 메시지가 사라진다.
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
+
 
 # 버튼은 클릭으로 시작된 실행에서만 True가 된다.
 # 이 버튼의 반환값은 쓰지 않는다. 재실행 후에도 기록이 남는지 확인하는 용도다.
@@ -30,7 +32,7 @@ if text:
     cleaned = text.strip()
     if cleaned:
         # append는 기존 목록 뒤에 메시지 한 개를 붙인다. 기존 기록은 유지된다.
-        st.session_state["messages"].append({"role": "user", "content": cleaned})
+        st.session_state["messages"].append({"role": "user", "content": cleaned})        
     else:
         st.warning("공백이 아닌 메시지를 입력하세요.")
 
