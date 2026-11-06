@@ -20,3 +20,4 @@ output
 AGENTS.md
 tmp
 models
+*.pyc
